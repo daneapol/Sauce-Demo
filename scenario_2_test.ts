@@ -1,14 +1,11 @@
 import { InventoryPage } from "./pages/InventoryPage";
 import { ItemPage } from "./pages/ItemPage";
-import { LoginPage } from "./pages/LoginPage";
+import { loginAs } from "./utils";
 
 Feature('Web automation tests');
 
 Scenario('Problem user adds one item to cart', async ({ I }) => {
-    I.amOnPage('/');
-    I.see('Swag Labs');
-    const loginPage = new LoginPage();
-    loginPage.login(I, 'problem_user', 'secret_sauce');
+    await loginAs(I, 'problem_user', 'secret_sauce');
 
     I.seeInCurrentUrl('/inventory');
     const inventoryPage = new InventoryPage();
