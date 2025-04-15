@@ -1,9 +1,9 @@
-module.exports = {
-    fields: {
+export class LoginPage {
+    protected fields = {
         username: 'Username',
         password: 'Password',
-    },
-    loginButton: 'Login',
+    };
+    protected loginButton = 'Login';
 
     login(I: CodeceptJS.I, username: string, password: string) {
         I.fillField(this.fields.username, username);
