@@ -27,6 +27,7 @@ export class InventoryPage extends BasePage {
                 console.info(`Clicked 'Add to Cart' button for item '${itemName}'`);
             });
         }
+        console.info(`Added '${count}' items to cart`);
     }
 
     clickItemName(I: CodeceptJS.I, itemName: string): void {
@@ -35,10 +36,10 @@ export class InventoryPage extends BasePage {
     }
 
     selectSortItemsOption(I: CodeceptJS.I, sortOptions: SortOptions) {
-        const { by, ascending } = sortOptions;
-        const option = `${by.toUpperCase()}_${ascending ? 'ASCENDING' : 'DESCENDING'}`;
+        const { by, order } = sortOptions;
+        const option = `${by.toUpperCase()}_${order.toUpperCase()}`;
         I.selectOption(this.sortOptionSelect, this.SORT_OPTIONS[option]);
-        console.info(`Sorting products by ${this.SORT_OPTIONS[option]}`);
+        console.info(`Sorted products by ${this.SORT_OPTIONS[option]}`);
     }
 
     async grabAllItemNames(I: CodeceptJS.I): Promise<string[]> {
@@ -51,14 +52,17 @@ export class InventoryPage extends BasePage {
     }
 
     async getExpectedSortedNamesOrPrices(I: CodeceptJS.I, sortOptions: SortOptions): Promise<string[] | number[]> {
-        const { by, ascending } = sortOptions;
+        const { by, order } = sortOptions;
+        const isAscendingOrder = order === 'ascending';
+
+        console.info(`Sorting items by ${by} in ${order} order`);
 
         if (by === 'name') {
             const sortedItemNames: string[] = (await this.grabAllItemNames(I)).sort();
-            return ascending ? sortedItemNames : sortedItemNames.reverse();
+            return isAscendingOrder ? sortedItemNames : sortedItemNames.reverse();
         }
 
         const sortedPrices: number[] = (await this.grabAllItemPrices(I)).sort((a, b) => a - b);
-        return ascending ? sortedPrices : sortedPrices.reverse();
+        return isAscendingOrder ? sortedPrices : sortedPrices.reverse();
     }
 };

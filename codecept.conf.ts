@@ -21,13 +21,27 @@ export const config: CodeceptJS.MainConfig = {
   },
   include: {
     I: './steps_file',
-    loginPage: './pages/LoginPage.ts'
+    InventoryPage: './pages/InventoryPage',
+    CartPage: './pages/CartPage',
+    CheckoutYourInformationPage: './pages/CheckoutYourInformationPage',
+    CheckoutOverviewPage: './pages/CheckoutOverviewPage'
   },
   plugins: {
     customLocator: {
       enabled: true,
       attribute: 'data-test'
+    },
+    '@codeceptjs/cucumber': {
+      require: [
+        './steps/gherkin_steps.ts'
+      ]
     }
+  },
+  gherkin: {
+    features: './features/*.feature',
+    steps: [
+      './steps/gherkin_steps.ts'
+    ]
   },
   name: 'Sauce-Demo'
 }

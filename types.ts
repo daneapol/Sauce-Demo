@@ -1,4 +1,4 @@
 export type SortOptions = {
     by: 'name' | 'price';
-    ascending: boolean;
+    order: 'ascending' | 'descending';
 };

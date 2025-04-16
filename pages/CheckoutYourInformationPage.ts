@@ -8,7 +8,8 @@ export class CheckoutYourInformationPage extends BasePage {
     };
     protected continueButton = 'Continue';
 
-    sendInformation(I: CodeceptJS.I, firstName: string, lastName: string, postalCode: string) {
+    submitInformation(I: CodeceptJS.I, firstName: string, lastName: string, postalCode: string) {
+        console.info('Submitting customer information');
         I.fillField(this.fields.firstName, firstName);
         I.fillField(this.fields.lastName, lastName);
         I.fillField(this.fields.postalCode, postalCode);

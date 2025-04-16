@@ -4,12 +4,12 @@ import { loginAs } from "./utils";
 
 Feature('Web automation tests');
 
-Scenario('Standard user sorts products by name', async ({ I }) => {
+Scenario('Standard user sorts items by name', async ({ I }) => {
     await loginAs(I, 'standard_user', 'secret_sauce');
 
     I.seeInCurrentUrl('/inventory');
     const inventoryPage = new InventoryPage();
-    const sortOptions: SortOptions = { by: 'name', ascending: true };
+    const sortOptions: SortOptions = { by: 'name', order: 'ascending' };
     inventoryPage.selectSortItemsOption(I, sortOptions);
 
     const isSortedByName = sortOptions.by === 'name';

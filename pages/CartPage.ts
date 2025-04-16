@@ -1,7 +1,7 @@
 import { BasePage } from "./BasePage";
 
 export class CartPage extends BasePage {
-    removeItemByName(I: CodeceptJS.I, addedItems: string[], index: number): void {
+    removeItemByNameFromCart(I: CodeceptJS.I, addedItems: string[], index: number): void {
         const itemName: string = addedItems[index];
         I.click(locate('button').withText('Remove')
             .inside(locate(this.inventoryItem).withText(itemName)));

@@ -18,13 +18,13 @@ Scenario('Standard user removes one item before completing order', async ({ I })
 
     I.seeInCurrentUrl('/cart.html');
     const cartPage = new CartPage();
-    cartPage.removeItemByName(I, addedItems, 2);
+    cartPage.removeItemByNameFromCart(I, addedItems, 2);
     I.assertEqual((addedItems.length).toString(), await cartPage.grabCartCount(I), 'Items count after removing item #3 match the count in cart');
     cartPage.clickCheckoutButton(I);
 
     I.seeInCurrentUrl('/checkout-step-one.html');
     const checkoutYourInformationPage = new CheckoutYourInformationPage()
-    checkoutYourInformationPage.sendInformation(I, 'Daniel', 'Apolonio', '1700');
+    checkoutYourInformationPage.submitInformation(I, 'Daniel', 'Apolonio', '1700');
 
     I.seeInCurrentUrl('/checkout-step-two.html');
     const checkoutOverviewPage = new CheckoutOverviewPage();

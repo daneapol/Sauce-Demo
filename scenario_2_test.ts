@@ -9,7 +9,7 @@ Scenario('Problem user adds one item to cart', async ({ I }) => {
 
     I.seeInCurrentUrl('/inventory');
     const inventoryPage = new InventoryPage();
-    const itemToCart = 'Test.allTheThings() T-Shirt (Red)';  // 'Sauce Labs Bolt T-Shirt'
+    const itemToCart = 'Test.allTheThings() T-Shirt (Red)';  // 'Sauce Labs Bolt T-Shirt' is the other item we can test
     inventoryPage.clickItemName(I, itemToCart);
 
     I.seeInCurrentUrl('/inventory-item.html');
