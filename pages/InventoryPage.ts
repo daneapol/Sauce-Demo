@@ -1,6 +1,8 @@
 import { SortOptions } from "../types";
 import { BasePage } from "./BasePage";
 
+// Page Object for Inventory Page
+
 export class InventoryPage extends BasePage {
     protected itemName = '.inventory_item_label > a';
     protected itemPrice = '$inventory-item-price';
@@ -17,6 +19,7 @@ export class InventoryPage extends BasePage {
         PRICE_DESCENDING: 'Price (high to low)'
     };
 
+    // Clicks all 'Add to Cart' buttons while retrieving all item names and adding each item name to `addedItems`
     async addAllItemsToCart(I: CodeceptJS.I): Promise<void> {
         const count = await I.grabNumberOfVisibleElements(this.inventoryItem);
         for (let i = 0; i < count; i++) {
@@ -30,11 +33,13 @@ export class InventoryPage extends BasePage {
         console.info(`Added '${count}' items to cart`);
     }
 
+    // Clicks the link of the `itemName`
     clickItemName(I: CodeceptJS.I, itemName: string): void {
         I.click(itemName);
         console.info(`Clicked item '${itemName}'`);
     }
 
+    // Sorts items based on provided `sortOptions`
     selectSortItemsOption(I: CodeceptJS.I, sortOptions: SortOptions) {
         const { by, order } = sortOptions;
         const option = `${by.toUpperCase()}_${order.toUpperCase()}`;
@@ -42,15 +47,18 @@ export class InventoryPage extends BasePage {
         console.info(`Sorted products by ${this.SORT_OPTIONS[option]}`);
     }
 
+    // Grabs all item names in the inventory to be used for sorting
     async grabAllItemNames(I: CodeceptJS.I): Promise<string[]> {
         return await I.grabTextFromAll(this.itemName)
     }
 
+    // Grabs all item prices in the inventory to be used for sorting
     async grabAllItemPrices(I: CodeceptJS.I): Promise<number[]> {
         const itemPrices = await I.grabTextFromAll(this.itemPrice);
         return itemPrices.map(itemPrice => Number(itemPrice.replace(/[^0-9.]/g, '')));
     }
 
+    // Gets an array of the expected order from `sortOptions`
     async getExpectedSortedNamesOrPrices(I: CodeceptJS.I, sortOptions: SortOptions): Promise<string[] | number[]> {
         const { by, order } = sortOptions;
         const isAscendingOrder = order === 'ascending';

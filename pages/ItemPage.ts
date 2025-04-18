@@ -1,5 +1,7 @@
 import { BasePage } from "./BasePage";
 
+// Page Object for Item Page
+
 export class ItemPage extends BasePage {
     protected addToCartButton = '#add-to-cart';
     protected itemName = '$inventory-item-name';
