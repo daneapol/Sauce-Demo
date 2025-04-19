@@ -5,20 +5,22 @@ This project contains end-to-end automated tests for the [Sauce Demo](https://ww
 
 ## Getting Started
 
-### 1. Clone the repository
+### 1. Install [Git](https://git-scm.com/downloads)
+
+### 2. Clone the repository
 
 ```
 git clone https://github.com/daneapol/Sauce-Demo.git
 cd Sauce-Demo
 ```
 
-### 2. Install dependencies
+### 3. Install dependencies
 
 ```
 npm install
 ```
 
-### 3. Run the tests
+### 4. Run the tests
 
 ```
 npx codeceptjs run
