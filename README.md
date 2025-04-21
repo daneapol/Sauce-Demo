@@ -5,7 +5,7 @@ This project contains end-to-end automated tests for the [Sauce Demo](https://ww
 
 ## Getting Started
 
-### 1. Install [Git](https://git-scm.com/downloads)
+### 1. Install [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org/en)
 
 ### 2. Clone the repository
 ```
